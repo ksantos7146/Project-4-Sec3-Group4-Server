@@ -1,0 +1,148 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|c:\\users\\user\\desktop\\project-iv-sec3-group4\\project iv\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|solutionrelative:project iv\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|c:\\users\\user\\desktop\\project-iv-sec3-group4\\project iv\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|solutionrelative:project iv\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|c:\\users\\user\\desktop\\project-iv-sec3-group4\\project iv\\project iv.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|solutionrelative:project iv\\project iv.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|c:\\users\\user\\desktop\\project-iv-sec3-group4\\project iv\\project iv.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|solutionrelative:project iv\\project iv.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|c:\\users\\user\\desktop\\project-iv-sec3-group4\\project iv\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|solutionrelative:project iv\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\Program.cs",
+              "RelativeDocumentMoniker": "Project IV\\Program.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\Program.cs",
+              "RelativeToolTip": "Project IV\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-04T18:47:39.248Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:134:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:135:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:136:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Project IV\\Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Project IV\\Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-04T18:47:21.231Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Project IV",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\Project IV.csproj",
+              "RelativeDocumentMoniker": "Project IV\\Project IV.csproj",
+              "ToolTip": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\Project IV.csproj",
+              "RelativeToolTip": "Project IV\\Project IV.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-03-04T18:47:17.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Project IV.http",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\Project IV.http",
+              "RelativeDocumentMoniker": "Project IV\\Project IV.http",
+              "ToolTip": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\Project IV.http",
+              "RelativeToolTip": "Project IV\\Project IV.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-03-04T18:47:13.66Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "WeatherForecast.cs",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\WeatherForecast.cs",
+              "RelativeDocumentMoniker": "Project IV\\WeatherForecast.cs",
+              "ToolTip": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\WeatherForecast.cs",
+              "RelativeToolTip": "Project IV\\WeatherForecast.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-04T18:47:06.803Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{269a02dc-6af8-11d3-bdc4-00c04f688e50}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
