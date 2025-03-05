@@ -1,6 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using Project_IV.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddDbContext<GitCommitDbContext>(options => {
+    options.UseMySQL(builder.Configuration.GetConnectionString("mysql"));
+});
+
 
 builder.Services.AddControllers();
 

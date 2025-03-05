@@ -3,20 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|c:\\users\\user\\desktop\\project-iv-sec3-group4\\project iv\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|solutionrelative:project iv\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|c:\\users\\user\\desktop\\project-iv-sec3-group4\\project iv\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|solutionrelative:project iv\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|c:\\users\\user\\desktop\\project-iv-sec3-group4\\project iv\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|solutionrelative:project iv\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|c:\\users\\user\\desktop\\project-iv-sec3-group4\\project iv\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|solutionrelative:project iv\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|c:\\users\\user\\desktop\\project-iv-sec3-group4\\project iv\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -25,6 +13,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|c:\\users\\user\\desktop\\project-iv-sec3-group4\\project iv\\project iv.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
       "RelativeMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|solutionrelative:project iv\\project iv.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|c:\\users\\user\\desktop\\project-iv-sec3-group4\\project iv\\project iv.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|solutionrelative:project iv\\project iv.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|c:\\users\\user\\desktop\\project-iv-sec3-group4\\project iv\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0A803D61-D223-4EA9-AAE5-94A03A9B1D77}|Project IV\\Project IV.csproj|solutionrelative:project iv\\weatherforecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,37 +30,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 15,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\appsettings.json",
-              "RelativeDocumentMoniker": "Project IV\\appsettings.json",
-              "ToolTip": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\appsettings.json",
-              "RelativeToolTip": "Project IV\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-04T18:53:52.574Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "WeatherForecastController.cs",
-              "DocumentMoniker": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\Controllers\\WeatherForecastController.cs",
-              "RelativeDocumentMoniker": "Project IV\\Controllers\\WeatherForecastController.cs",
-              "ToolTip": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\Controllers\\WeatherForecastController.cs",
-              "RelativeToolTip": "Project IV\\Controllers\\WeatherForecastController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA7AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-04T18:53:26.899Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\Program.cs",
               "RelativeDocumentMoniker": "Project IV\\Program.cs",
@@ -117,20 +87,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Project IV\\Properties\\launchSettings.json",
               "ToolTip": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\Properties\\launchSettings.json",
               "RelativeToolTip": "Project IV\\Properties\\launchSettings.json",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA8AAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-03-04T18:47:21.231Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "Project IV",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\Project IV.csproj",
               "RelativeDocumentMoniker": "Project IV\\Project IV.csproj",
@@ -142,7 +112,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
+              "Title": "Project IV.http",
+              "DocumentMoniker": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\Project IV.http",
+              "RelativeDocumentMoniker": "Project IV\\Project IV.http",
+              "ToolTip": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\Project IV.http",
+              "RelativeToolTip": "Project IV\\Project IV.http",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2025-03-04T18:47:13.66Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "WeatherForecast.cs",
               "DocumentMoniker": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\WeatherForecast.cs",
               "RelativeDocumentMoniker": "Project IV\\WeatherForecast.cs",
