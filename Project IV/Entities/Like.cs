@@ -2,14 +2,9 @@
 {
     public class Like
     {
-        private int likeId;
-        private int likerId;
-        private int likedId;
-        private DateTime likedAt;
-
-        public int LikeId { get => likeId; set => likeId = value; }
-        public int LikerId { get => likerId; set => likerId = value; }
-        public int LikedId { get => likedId; set => likedId = value; }
-        public DateTime LikedAt { get => likedAt; set => likedAt = value; }
+        public int LikeId { get; set; }
+        public int LikerId { get; set; }
+        public int LikedId { get; set; }
+        public DateTime LikedAt { get; set; }
     }
 }

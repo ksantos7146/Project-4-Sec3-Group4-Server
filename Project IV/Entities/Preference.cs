@@ -2,18 +2,11 @@
 {
     public class Preference
     {
-        private int preferenceId;
-        private int userId;
-        private int minAge = 18;
-        private int maxAge = 100;
-        private Gender? gender;
-        private User? user;
-
-        public int PreferenceId { get => preferenceId; set => preferenceId = value; }
-        public int UserId { get => userId; set => userId = value; }
-        public int MinAge { get => minAge; set => minAge = value; }
-        public int MaxAge { get => maxAge; set => maxAge = value; }
-        public Gender? Gender { get => gender; set => gender = value; }
-        public User? User { get => user; set => user = value; }
+        public int PreferenceId { get; set; }
+        public int UserId { get; set; }
+        public int MinAge { get; set; } = 18;
+        public int MaxAge { get; set; } = 100;
+        public Gender? Gender { get; set; }
+        public User? User { get; set; }
     }
 }

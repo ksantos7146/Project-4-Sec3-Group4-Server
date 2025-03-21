@@ -5,7 +5,7 @@ namespace Project_IV.Data
 {
     public class GitCommitDbContext : DbContext
     {
-        public GitCommitDbContext(DbContextOptions<GitCommitDbContext> context) : base(context) { }
+        public GitCommitDbContext(DbContextOptions<GitCommitDbContext> options) : base(options) { }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Image> Images { get; set; }
@@ -13,5 +13,4 @@ namespace Project_IV.Data
         public DbSet<Match> Matches { get; set; }
         public DbSet<Preference> Preferences { get; set; }
     }
-}
 }
