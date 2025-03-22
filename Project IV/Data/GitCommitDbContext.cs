@@ -23,8 +23,8 @@ namespace Project_IV.Data
             {
                 entity.ToTable("users");
                 entity.Property(e => e.UserId).HasColumnName("user_id");
-                entity.Property(e => e.Username).HasColumnName("username");
-                entity.Property(e => e.Bio).HasColumnName("bio");
+                entity.Property(e => e.Username).HasColumnName("username").HasMaxLength(100).IsRequired();
+                entity.Property(e => e.Bio).HasColumnName("bio").HasColumnType("text");
                 entity.Property(e => e.GenderId).HasColumnName("gender_id");
                 entity.Property(e => e.StateId).HasColumnName("state_id");
                 entity.Property(e => e.Age).HasColumnName("age");
@@ -44,7 +44,7 @@ namespace Project_IV.Data
             {
                 entity.ToTable("images");
                 entity.Property(e => e.ImageId).HasColumnName("image_id");
-                entity.Property(e => e.ImageData).HasColumnName("image_data");
+                entity.Property(e => e.ImageData).HasColumnName("image_data").HasColumnType("text").IsRequired();
                 entity.Property(e => e.UploadedAt).HasColumnName("uploaded_at");
                 entity.Property(e => e.UserId).HasColumnName("user_id");
 
@@ -97,8 +97,8 @@ namespace Project_IV.Data
                 entity.ToTable("preferences");
                 entity.Property(e => e.PreferenceId).HasColumnName("preference_id");
                 entity.Property(e => e.UserId).HasColumnName("user_id");
-                entity.Property(e => e.MinAge).HasColumnName("min_age");
-                entity.Property(e => e.MaxAge).HasColumnName("max_age");
+                entity.Property(e => e.MinAge).HasColumnName("min_age").HasDefaultValue(18);
+                entity.Property(e => e.MaxAge).HasColumnName("max_age").HasDefaultValue(100);
                 entity.Property(e => e.GenderId).HasColumnName("gender_id");
 
                 entity.HasOne(e => e.User)
@@ -116,14 +116,14 @@ namespace Project_IV.Data
             {
                 entity.ToTable("gender");
                 entity.Property(e => e.Id).HasColumnName("id");
-                entity.Property(e => e.Name).HasColumnName("name");
+                entity.Property(e => e.Name).HasColumnName("name").HasMaxLength(20).IsRequired();
             });
 
             modelBuilder.Entity<State>(entity =>
             {
                 entity.ToTable("state");
                 entity.Property(e => e.Id).HasColumnName("id");
-                entity.Property(e => e.Name).HasColumnName("name");
+                entity.Property(e => e.Name).HasColumnName("name").HasMaxLength(20).IsRequired();
             });
         }
     }

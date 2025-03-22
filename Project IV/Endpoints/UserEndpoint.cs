@@ -1,37 +1,42 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Project_IV.Data;
-using Project_IV.Dtos;
+﻿using Project_IV.Dtos;
 using Project_IV.Entities;
 using Project_IV.Mappers;
+using Project_IV.Service;
+using System.Collections.Generic;
 
 namespace Project_IV.Endpoints
 {
     public class UserEndpoint
     {
-        private readonly GitCommitDbContext _dbContext;
+        private readonly IUserService _userService;
 
-        public UserEndpoint(GitCommitDbContext dbContext)
+        public UserEndpoint(IUserService userService)
         {
-            _dbContext = dbContext;
+            _userService = userService;
+        }
+
+        public async Task<IEnumerable<UserDto>> GetAllUsers()
+        {
+            var users = await _userService.GetAllUsersAsync();
+            return users.Select(u => u.ToDto());
         }
 
         public async Task<UserDto> GetUserById(int id)
         {
-            var user = await _dbContext.Users.FindAsync(id);
+            var user = await _userService.GetUserByIdAsync(id);
             return user?.ToDto();
         }
 
         public async Task<UserDto> CreateUser(UserDto userDto)
         {
             var user = userDto.ToEntity();
-            _dbContext.Users.Add(user);
-            await _dbContext.SaveChangesAsync();
+            await _userService.AddUserAsync(user);
             return user.ToDto();
         }
 
         public async Task<UserDto> UpdateUser(int id, UserDto userDto)
         {
-            var user = await _dbContext.Users.FindAsync(id);
+            var user = await _userService.GetUserByIdAsync(id);
             if (user == null)
             {
                 return null;
@@ -43,31 +48,25 @@ namespace Project_IV.Endpoints
             user.StateId = userDto.StateId;
             user.Age = userDto.Age;
 
-            _dbContext.Users.Update(user);
-            await _dbContext.SaveChangesAsync();
+            await _userService.UpdateUserAsync(user);
             return user.ToDto();
         }
 
         public async Task<bool> DeleteUser(int id)
         {
-            var user = await _dbContext.Users.FindAsync(id);
+            var user = await _userService.GetUserByIdAsync(id);
             if (user == null)
             {
                 return false;
             }
 
-            _dbContext.Users.Remove(user);
-            await _dbContext.SaveChangesAsync();
+            await _userService.DeleteUserAsync(id);
             return true;
         }
 
         public async Task<IEnumerable<ImageDto>> GetImagesByUserId(int userId)
         {
-            var user = await _dbContext.Users
-                .Where(u => u.UserId == userId)
-                .Include(u => u.Images)
-                .FirstOrDefaultAsync();
-
+            var user = await _userService.GetUserByIdAsync(userId);
             if (user == null)
             {
                 return new List<ImageDto>();
@@ -78,7 +77,7 @@ namespace Project_IV.Endpoints
 
         public async Task<IEnumerable<ImageDto>> CreateImagesByUserId(int userId, IEnumerable<ImageDto> imageDtos)
         {
-            var user = await _dbContext.Users.FindAsync(userId);
+            var user = await _userService.GetUserByIdAsync(userId);
             if (user == null)
             {
                 return new List<ImageDto>();
@@ -91,8 +90,12 @@ namespace Project_IV.Endpoints
                 UserId = userId
             }).ToList();
 
-            await _dbContext.Images.AddRangeAsync(images);
-            await _dbContext.SaveChangesAsync();
+            foreach (var image in images)
+            {
+                user.Images.Add(image);
+            }
+            
+            await _userService.UpdateUserAsync(user);
 
             return images.Select(i => i.ToDto()).ToList();
         }
