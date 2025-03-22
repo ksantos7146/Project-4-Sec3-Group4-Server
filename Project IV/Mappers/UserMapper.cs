@@ -12,22 +12,22 @@ namespace Project_IV.Mappers
                 UserId = user.UserId,
                 Username = user.Username,
                 Bio = user.Bio,
-                Gender = user.Gender,
-                State = user.State,
+                GenderId = user.GenderId,
+                StateId = user.StateId,
                 Age = user.Age,
                 Images = user.Images.Select(i => i.ToDto()).ToList()
             };
         }
 
-    public static User ToEntity(this UserDto userDto)
+        public static User ToEntity(this UserDto userDto)
         {
             return new User
             {
                 UserId = userDto.UserId,
                 Username = userDto.Username,
                 Bio = userDto.Bio,
-                Gender = userDto.Gender,
-                State = userDto.State,
+                GenderId = userDto.GenderId,
+                StateId = userDto.StateId,
                 Age = userDto.Age,
                 Images = userDto.Images.Select(i => i.ToEntity()).ToList()
             };

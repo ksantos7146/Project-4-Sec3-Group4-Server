@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Project_IV.Data;
 using Project_IV.Endpoints;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +11,11 @@ builder.Services.AddDbContext<GitCommitDbContext>(options => {
 });
 
 builder.Services.AddScoped<Project_IV.Endpoints.UserEndpoint>(); // Register UserEndpoint with full namespace
-builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    });
 
 var app = builder.Build();
 

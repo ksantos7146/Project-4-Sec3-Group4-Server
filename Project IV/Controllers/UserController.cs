@@ -22,15 +22,23 @@ public class UserController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<UserDto>> PostUser([FromBody] UserDto userDto)
+    public async Task<ActionResult<UserDto>> PostUser(UserDto userDto)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
         var createdUser = await _userEndpoint.CreateUser(userDto);
         return CreatedAtAction(nameof(GetUser), new { id = createdUser.UserId }, createdUser);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutUser(int id, [FromBody] UserDto userDto)
+    public async Task<IActionResult> PutUser(int id, UserDto userDto)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
         if (id != userDto.UserId) return BadRequest();
         var updatedUser = await _userEndpoint.UpdateUser(id, userDto);
         if (updatedUser == null) return NotFound();

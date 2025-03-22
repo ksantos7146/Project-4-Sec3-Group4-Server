@@ -7,8 +7,8 @@ namespace Project_IV.Dtos
         public int UserId { get; set; }
         public string Username { get; set; } = string.Empty;
         public string? Bio { get; set; }
-        public Gender? Gender { get; set; }
-        public State State { get; set; } = State.Offline;
+        public int? GenderId { get; set; }
+        public int StateId { get; set; }
         public int Age { get; set; }
         public ICollection<ImageDto> Images { get; set; } = new List<ImageDto>();
     }

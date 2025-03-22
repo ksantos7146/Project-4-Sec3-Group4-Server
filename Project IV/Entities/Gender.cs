@@ -1,9 +1,8 @@
 ﻿namespace Project_IV.Entities
 {
-    public enum Gender
+    public class Gender
     {
-        Male,
-        Female,
-        Other
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
     }
 }

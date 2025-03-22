@@ -39,8 +39,8 @@ namespace Project_IV.Endpoints
 
             user.Username = userDto.Username;
             user.Bio = userDto.Bio;
-            user.Gender = userDto.Gender;
-            user.State = userDto.State;
+            user.GenderId = userDto.GenderId;
+            user.StateId = userDto.StateId;
             user.Age = userDto.Age;
 
             _dbContext.Users.Update(user);

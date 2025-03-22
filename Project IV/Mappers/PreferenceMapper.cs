@@ -13,7 +13,7 @@ namespace Project_IV.Mappers
                 UserId = preference.UserId,
                 MinAge = preference.MinAge,
                 MaxAge = preference.MaxAge,
-                Gender = preference.Gender
+                GenderId = preference.GenderId
             };
         }
 
@@ -25,7 +25,7 @@ namespace Project_IV.Mappers
                 UserId = preferenceDto.UserId,
                 MinAge = preferenceDto.MinAge,
                 MaxAge = preferenceDto.MaxAge,
-                Gender = preferenceDto.Gender
+                GenderId = preferenceDto.GenderId
             };
         }
     }

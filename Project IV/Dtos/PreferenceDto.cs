@@ -8,7 +8,7 @@ namespace Project_IV.Dtos
         public int UserId { get; set; }
         public int MinAge { get; set; } = 18;
         public int MaxAge { get; set; } = 100;
-        public Gender? Gender { get; set; }
+        public int? GenderId { get; set; }
     }
 
 }

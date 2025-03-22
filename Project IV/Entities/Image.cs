@@ -6,6 +6,8 @@
         public string ImageData { get; set; } = string.Empty;
         public DateTime UploadedAt { get; set; }
         public int UserId { get; set; }
-        public User? User { get; set; }
+
+        // Navigation property
+        public User User { get; set; } = null!;
     }
 }

@@ -1,9 +1,8 @@
 ﻿namespace Project_IV.Entities
 {
-    public enum State
+    public class State
     {
-        Online,
-        Offline,
-        Paused
+        public int Id { get; set; }
+        public string Name { get; set; } = string.Empty;
     }
 }
