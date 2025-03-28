@@ -202,9 +202,23 @@ C:\Users\user\Desktop\Project IV\Project IV\obj\Debug\net8.0\staticwebassets\msb
 C:\Users\user\Desktop\Project IV\Project IV\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Project IV.props
 C:\Users\user\Desktop\Project IV\Project IV\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Users\user\Desktop\Project IV\Project IV\obj\Debug\net8.0\scopedcss\bundle\Project IV.styles.css
-C:\Users\user\Desktop\Project IV\Project IV\obj\Debug\net8.0\Project IV.csproj.CopyComplete
 C:\Users\user\Desktop\Project IV\Project IV\obj\Debug\net8.0\Project IV.dll
 C:\Users\user\Desktop\Project IV\Project IV\obj\Debug\net8.0\refint\Project IV.dll
 C:\Users\user\Desktop\Project IV\Project IV\obj\Debug\net8.0\Project IV.pdb
 C:\Users\user\Desktop\Project IV\Project IV\obj\Debug\net8.0\Project IV.genruntimeconfig.cache
 C:\Users\user\Desktop\Project IV\Project IV\obj\Debug\net8.0\ref\Project IV.dll
+C:\Users\user\Desktop\Project IV\Project IV\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\user\Desktop\Project IV\Project IV\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\user\Desktop\Project IV\Project IV\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\user\Desktop\Project IV\Project IV\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\user\Desktop\Project IV\Project IV\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\user\Desktop\Project IV\Project IV\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\user\Desktop\Project IV\Project IV\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+C:\Users\user\Desktop\Project IV\Project IV\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\user\Desktop\Project IV\Project IV\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\user\Desktop\Project IV\Project IV\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\user\Desktop\Project IV\Project IV\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\user\Desktop\Project IV\Project IV\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\user\Desktop\Project IV\Project IV\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\user\Desktop\Project IV\Project IV\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\user\Desktop\Project IV\Project IV\obj\Debug\net8.0\Project IV.csproj.CopyComplete

@@ -19,6 +19,9 @@ namespace Project_IV.Service.Impl
         public async Task<IEnumerable<Image>> GetAllImagesAsync() =>
             await _dbContext.Images.ToListAsync();
 
+        public async Task<IEnumerable<Image>> GetImagesByUserIdAsync(string userId) =>
+            await _dbContext.Images.Where(i => i.UserId == userId).ToListAsync();
+
         public async Task AddImageAsync(Image image)
         {
             await _dbContext.Images.AddAsync(image);

@@ -8,5 +8,6 @@ namespace Project_IV.Service
         Task<IEnumerable<Like>> GetAllLikesAsync();
         Task AddLikeAsync(Like like);
         Task RemoveLikeAsync(int id);
+        Task<IEnumerable<Like>> GetLikesByLikedIdAsync(string likedId);
     }
 }

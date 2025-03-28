@@ -21,7 +21,7 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<UserDto>> GetUser(int id)
+    public async Task<ActionResult<UserDto>> GetUser(string id)
     {
         var user = await _userEndpoint.GetUserById(id);
         if (user == null) return NotFound();
@@ -40,7 +40,7 @@ public class UserController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutUser(int id, UserDto userDto)
+    public async Task<IActionResult> PutUser(string id, UserDto userDto)
     {
         if (!ModelState.IsValid)
         {
@@ -53,7 +53,7 @@ public class UserController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteUser(int id)
+    public async Task<IActionResult> DeleteUser(string id)
     {
         var success = await _userEndpoint.DeleteUser(id);
         if (!success) return NotFound();
@@ -61,16 +61,16 @@ public class UserController : ControllerBase
     }
 
     [HttpGet("{userId}/images")]
-    public async Task<ActionResult<IEnumerable<ImageDto>>> GetImagesByUserId(int userId)
+    public async Task<ActionResult<IEnumerable<ImageDto>>> GetImagesByUserId(string userId)
     {
         var images = await _userEndpoint.GetImagesByUserId(userId);
         return Ok(images);
     }
 
     [HttpPost("{userId}/images")]
-    public async Task<ActionResult<IEnumerable<ImageDto>>> PostImagesByUserId(int userId, [FromBody] IEnumerable<ImageDto> images)
+    public async Task<ActionResult<IEnumerable<ImageDto>>> PostImagesByUserId(string userId, [FromBody] IEnumerable<ImageDto> images)
     {
-        var createdImages = await _userEndpoint.CreateImagesByUserId(userId, images);
-        return CreatedAtAction(nameof(GetImagesByUserId), new { userId = userId }, createdImages);
+        var createdImages = await _userEndpoint.CreateImagesForUser(userId, images);
+        return Ok(createdImages);
     }
 }

@@ -9,8 +9,8 @@ namespace Project_IV.Mappers
         {
             return new UserDto
             {
-                UserId = user.UserId,
-                Username = user.Username,
+                UserId = user.Id,
+                Username = user.UserName,
                 Bio = user.Bio,
                 GenderId = user.GenderId,
                 StateId = user.StateId,
@@ -23,7 +23,7 @@ namespace Project_IV.Mappers
         {
             return new User
             {
-                Username = userDto.Username,
+                UserName = userDto.Username,
                 Bio = userDto.Bio,
                 GenderId = userDto.GenderId,
                 StateId = userDto.StateId,

@@ -1,13 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Project_IV.Entities;
 
 namespace Project_IV.Data
 {
-    public class GitCommitDbContext : DbContext
+    public class GitCommitDbContext : IdentityDbContext<User>
     {
         public GitCommitDbContext(DbContextOptions<GitCommitDbContext> options) : base(options) { }
 
-        public DbSet<User> Users { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<Like> Likes { get; set; }
         public DbSet<Match> Matches { get; set; }
@@ -21,24 +21,10 @@ namespace Project_IV.Data
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.ToTable("users");
-                entity.Property(e => e.UserId).HasColumnName("user_id");
-                entity.Property(e => e.Username).HasColumnName("username").HasMaxLength(100).IsRequired();
-                entity.Property(e => e.Password).HasColumnName("password").HasMaxLength(100).IsRequired();
                 entity.Property(e => e.Bio).HasColumnName("bio").HasColumnType("text");
                 entity.Property(e => e.GenderId).HasColumnName("gender_id");
                 entity.Property(e => e.StateId).HasColumnName("state_id");
                 entity.Property(e => e.Age).HasColumnName("age");
-
-                entity.HasOne(e => e.Gender)
-                    .WithMany()
-                    .HasForeignKey(e => e.GenderId)
-                    .OnDelete(DeleteBehavior.SetNull);
-
-                entity.HasOne(e => e.State)
-                    .WithMany()
-                    .HasForeignKey(e => e.StateId)
-                    .OnDelete(DeleteBehavior.Restrict);
             });
 
             modelBuilder.Entity<Image>(entity =>

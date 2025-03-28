@@ -1,8 +1,10 @@
 ﻿using Project_IV.Dtos;
-using Project_IV.Service.Impl;
+using Project_IV.Entities;
 using Project_IV.Mappers;
-using System.Threading.Tasks;
 using Project_IV.Service;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Project_IV.Endpoints
 {
@@ -15,39 +17,50 @@ namespace Project_IV.Endpoints
             _preferenceService = preferenceService;
         }
 
-        // Get a preference by ID
-        public async Task<PreferenceDto> GetPreferenceById(int id)
+        public async Task<IEnumerable<PreferenceDto>> GetAllPreferences()
         {
-            var preference = await _preferenceService.GetPreferenceByUserIdAsync(id);
+            var preferences = await _preferenceService.GetAllPreferencesAsync();
+            return preferences.Select(p => p.ToDto());
+        }
+
+        public async Task<PreferenceDto> GetPreferenceByUserId(string userId)
+        {
+            var preference = await _preferenceService.GetPreferenceByUserIdAsync(userId);
             return preference?.ToDto();
         }
 
-        // Create a new preference
         public async Task<PreferenceDto> CreatePreference(PreferenceDto preferenceDto)
         {
-            var preference = preferenceDto.ToEntity(); // Map DTO to entity
+            var preference = preferenceDto.ToEntity();
             await _preferenceService.AddPreferenceAsync(preference);
-            return preference.ToDto(); // Return the created preference as DTO
+            return preference.ToDto();
         }
 
-        // Update a preference
-        public async Task<PreferenceDto> UpdatePreference(int id, PreferenceDto preferenceDto)
+        public async Task<PreferenceDto> UpdatePreference(string userId, PreferenceDto preferenceDto)
         {
-            var preference = await _preferenceService.GetPreferenceByUserIdAsync(id);
-            if (preference == null) return null;
+            var existingPreference = await _preferenceService.GetPreferenceByUserIdAsync(userId);
+            if (existingPreference == null)
+            {
+                return null;
+            }
 
-            preference = preferenceDto.ToEntity(); // Map DTO to entity
-            await _preferenceService.UpdatePreferenceAsync(preference);
-            return preference.ToDto(); // Return the updated preference as DTO
+            var updatedPreference = preferenceDto.ToEntity();
+            updatedPreference.PreferenceId = existingPreference.PreferenceId;
+            updatedPreference.UserId = userId;
+
+            await _preferenceService.UpdatePreferenceAsync(updatedPreference);
+            return updatedPreference.ToDto();
         }
 
-        // Delete a preference
-        public async Task<bool> DeletePreference(int id)
+        public async Task<bool> DeletePreference(string userId)
         {
-            var preference = await _preferenceService.GetPreferenceByUserIdAsync(id);
-            if (preference == null) return false;
+            var preference = await _preferenceService.GetPreferenceByUserIdAsync(userId);
+            if (preference == null)
+            {
+                return false;
+            }
 
-            await _preferenceService.DeletePreferenceAsync(id);
+            await _preferenceService.DeletePreferenceAsync(preference.PreferenceId);
             return true;
         }
     }

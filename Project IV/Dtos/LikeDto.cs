@@ -3,8 +3,9 @@
     public class LikeDto
     {
         public int? LikeId { get; set; }
-        public int LikerId { get; set; }
-        public int LikedId { get; set; }
-        public DateTime LikedAt { get; set; }
+        public string? LikerId { get; set; } = string.Empty;
+        public string LikedId { get; set; } = string.Empty;
+        public DateTime? LikedAt { get; set; }
+        public bool likedBack { get; set; } = false;
     }
 }

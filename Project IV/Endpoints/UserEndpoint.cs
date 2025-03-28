@@ -21,7 +21,7 @@ namespace Project_IV.Endpoints
             return users.Select(u => u.ToDto());
         }
 
-        public async Task<UserDto> GetUserById(int id)
+        public async Task<UserDto> GetUserById(string id)
         {
             var user = await _userService.GetUserByIdAsync(id);
             return user?.ToDto();
@@ -34,7 +34,7 @@ namespace Project_IV.Endpoints
             return user.ToDto();
         }
 
-        public async Task<UserDto> UpdateUser(int id, UserDto userDto)
+        public async Task<UserDto> UpdateUser(string id, UserDto userDto)
         {
             var user = await _userService.GetUserByIdAsync(id);
             if (user == null)
@@ -42,7 +42,7 @@ namespace Project_IV.Endpoints
                 return null;
             }
 
-            user.Username = userDto.Username;
+            user.UserName = userDto.Username;
             user.Bio = userDto.Bio;
             user.GenderId = userDto.GenderId;
             user.StateId = userDto.StateId;
@@ -52,7 +52,7 @@ namespace Project_IV.Endpoints
             return user.ToDto();
         }
 
-        public async Task<bool> DeleteUser(int id)
+        public async Task<bool> DeleteUser(string id)
         {
             var user = await _userService.GetUserByIdAsync(id);
             if (user == null)
@@ -60,44 +60,37 @@ namespace Project_IV.Endpoints
                 return false;
             }
 
-            await _userService.DeleteUserAsync(id);
+            await _userService.DeleteUserAsync(user);
             return true;
         }
 
-        public async Task<IEnumerable<ImageDto>> GetImagesByUserId(int userId)
+        public async Task<IEnumerable<ImageDto>> GetImagesByUserId(string userId)
         {
             var user = await _userService.GetUserByIdAsync(userId);
             if (user == null)
             {
-                return new List<ImageDto>();
+                return Enumerable.Empty<ImageDto>();
             }
 
-            return user.Images.Select(i => i.ToDto()).ToList();
+            return user.Images.Select(i => i.ToDto());
         }
 
-        public async Task<IEnumerable<ImageDto>> CreateImagesByUserId(int userId, IEnumerable<ImageDto> imageDtos)
+        public async Task<IEnumerable<ImageDto>> CreateImagesForUser(string userId, IEnumerable<ImageDto> imageDtos)
         {
             var user = await _userService.GetUserByIdAsync(userId);
             if (user == null)
             {
-                return new List<ImageDto>();
+                return Enumerable.Empty<ImageDto>();
             }
 
-            var images = imageDtos.Select(dto => new Image
-            {
-                ImageData = dto.ImageData,
-                UploadedAt = dto.UploadedAt,
-                UserId = userId
-            }).ToList();
-
+            var images = imageDtos.Select(dto => dto.ToEntity());
             foreach (var image in images)
             {
                 user.Images.Add(image);
             }
-            
-            await _userService.UpdateUserAsync(user);
 
-            return images.Select(i => i.ToDto()).ToList();
+            await _userService.UpdateUserAsync(user);
+            return user.Images.Select(i => i.ToDto());
         }
     }
 }

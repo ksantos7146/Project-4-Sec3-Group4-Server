@@ -24,6 +24,11 @@ namespace Project_IV.Service.Impl
             await _dbContext.Likes.AddAsync(like);
             await _dbContext.SaveChangesAsync();
         }
+        public async Task<IEnumerable<Like>> GetLikesByLikedIdAsync(string likedId)
+        {
+            return await _dbContext.Likes.Where(l => l.LikedId == likedId).ToListAsync();
+        }
+
 
         public async Task RemoveLikeAsync(int id)
         {

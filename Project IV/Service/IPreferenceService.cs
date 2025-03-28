@@ -4,9 +4,10 @@ namespace Project_IV.Service
 {
     public interface IPreferenceService
     {
-        Task<Preference> GetPreferenceByUserIdAsync(int userId);
+        Task<Preference> GetPreferenceByUserIdAsync(string userId);
+        Task<IEnumerable<Preference>> GetAllPreferencesAsync();
         Task AddPreferenceAsync(Preference preference);
         Task UpdatePreferenceAsync(Preference preference);
-        Task DeletePreferenceAsync(int preferenceId);
+        Task DeletePreferenceAsync(int id);
     }
 }

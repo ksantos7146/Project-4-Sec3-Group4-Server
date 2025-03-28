@@ -3,13 +3,15 @@
     public class Preference
     {
         public int PreferenceId { get; set; }
-        public int UserId { get; set; }
-        public int MinAge { get; set; } = 18;
-        public int MaxAge { get; set; } = 100;
+        public string UserId { get; set; } = string.Empty;
+        public int? MinAge { get; set; }
+        public int? MaxAge { get; set; }
         public int? GenderId { get; set; }
+        public int? StateId { get; set; }
 
         // Navigation properties
         public User User { get; set; } = null!;
         public Gender? Gender { get; set; }
+        public State? State { get; set; }
     }
 }

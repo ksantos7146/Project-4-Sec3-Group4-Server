@@ -2,16 +2,21 @@
 using Project_IV.Entities;
 using Project_IV.Service;
 using Project_IV.Mappers;
+using System.Collections.Generic;
 
 namespace Project_IV.Endpoints
 {
     public class LikeEndpoint
     {
         private readonly ILikeService _likeService;
+        private readonly IAuthService _authService;
+        private readonly IMatchService _matchService;
 
-        public LikeEndpoint(ILikeService likeService)
+        public LikeEndpoint(ILikeService likeService, IAuthService authService, IMatchService matchService)
         {
             _likeService = likeService;
+            _authService = authService;
+            _matchService = matchService;
         }
 
         // Get a single like by ID
@@ -31,10 +36,34 @@ namespace Project_IV.Endpoints
         // Create a new like
         public async Task<LikeDto> CreateLike(LikeDto likeDto)
         {
-            var like = likeDto.ToEntity(); // Map DTO to entity
+            var likerId = await _authService.GetCurrentUserIdAsync();
+            var existingLike = (await _likeService.GetLikesByLikedIdAsync(likeDto.LikedId))
+                               .FirstOrDefault(l => l.LikerId == likeDto.LikedId);
+
+            var like = likeDto.ToEntity();
+            like.LikedAt = DateTime.UtcNow;
+            like.LikerId = likerId;
             await _likeService.AddLikeAsync(like);
-            return like.ToDto(); // Return the created like as DTO
+            if (existingLike != null)
+            {
+                var match = new Match
+                {
+                    MatchedAt = DateTime.UtcNow,
+                    User1Id = existingLike.LikerId,
+                    User2Id = like.LikedId
+                };
+                await _matchService.AddMatchAsync(match);
+                return new LikeDto
+                {
+                    LikedAt = like.LikedAt,
+                    LikerId = like.LikerId,
+                    LikedId = existingLike.LikerId,
+                    likedBack = true
+                };
+            }
+            return like.ToDto(); // Return the like as a DTO
         }
+
 
         // Delete a like
         public async Task<bool> DeleteLike(int id)

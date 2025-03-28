@@ -6,6 +6,7 @@ namespace Project_IV.Service
     {
         Task<Image> GetImageByIdAsync(int id);
         Task<IEnumerable<Image>> GetAllImagesAsync();
+        Task<IEnumerable<Image>> GetImagesByUserIdAsync(string userId);
         Task AddImageAsync(Image image);
         Task UpdateImageAsync(Image image);
         Task DeleteImageAsync(int id);

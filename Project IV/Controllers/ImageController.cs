@@ -4,41 +4,53 @@ using Project_IV.Endpoints;
 
 namespace Project_IV.Controllers
 {
-    [Route("api/images")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ImageController : ControllerBase
     {
-        private readonly ImageEndpoint imageEndpoint;
+        private readonly ImageEndpoint _imageEndpoint;
 
         public ImageController(ImageEndpoint imageEndpoint)
         {
-            this.imageEndpoint = imageEndpoint;
+            _imageEndpoint = imageEndpoint;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ImageDto>>> GetAllImages()
+        {
+            var images = await _imageEndpoint.GetAllImages();
+            return Ok(images);
         }
 
         // Get a single image by ID
         [HttpGet("{id}")]
         public async Task<ActionResult<ImageDto>> GetImage(int id)
         {
-            var image = await imageEndpoint.GetImageById(id);
-            if (image == null) return NotFound();
+            var image = await _imageEndpoint.GetImageById(id);
+            if (image == null)
+            {
+                return NotFound();
+            }
             return Ok(image);
         }
 
         // Create a new image
         [HttpPost]
-        public async Task<ActionResult<ImageDto>> PostImage([FromBody] ImageDto imageDto)
+        public async Task<ActionResult<ImageDto>> PostImage(ImageDto imageDto)
         {
-            var createdImage = await imageEndpoint.CreateImage(imageDto);
+            var createdImage = await _imageEndpoint.CreateImage(imageDto);
             return CreatedAtAction(nameof(GetImage), new { id = createdImage.ImageId }, createdImage);
         }
 
         // Update an existing image
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutImage(int id, [FromBody] ImageDto imageDto)
+        public async Task<IActionResult> PutImage(int id, ImageDto imageDto)
         {
-            if (id != imageDto.ImageId) return BadRequest();
-            var updatedImage = await imageEndpoint.UpdateImage(id, imageDto);
-            if (updatedImage == null) return NotFound();
+            var updatedImage = await _imageEndpoint.UpdateImage(id, imageDto);
+            if (updatedImage == null)
+            {
+                return NotFound();
+            }
             return Ok(updatedImage);
         }
 
@@ -46,25 +58,28 @@ namespace Project_IV.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteImage(int id)
         {
-            var success = await imageEndpoint.DeleteImage(id);
-            if (!success) return NotFound();
+            var result = await _imageEndpoint.DeleteImage(id);
+            if (!result)
+            {
+                return NotFound();
+            }
             return NoContent();
         }
 
         // Get all images for a specific user
         [HttpGet("user/{userId}")]
-        public async Task<ActionResult<IEnumerable<ImageDto>>> GetImagesByUserId(int userId)
+        public async Task<ActionResult<IEnumerable<ImageDto>>> GetImagesByUserId(string userId)
         {
-            var images = await imageEndpoint.GetImagesByUserId(userId);
+            var images = await _imageEndpoint.GetImagesByUserId(userId);
             return Ok(images);
         }
 
         // Create multiple images for a specific user
         [HttpPost("user/{userId}")]
-        public async Task<ActionResult<IEnumerable<ImageDto>>> PostImagesByUserId(int userId, [FromBody] IEnumerable<ImageDto> images)
+        public async Task<ActionResult<IEnumerable<ImageDto>>> PostImagesForUser(string userId, [FromBody] IEnumerable<ImageDto> images)
         {
-            var createdImages = await imageEndpoint.CreateImagesByUserId(userId, images);
-            return CreatedAtAction(nameof(GetImagesByUserId), new { userId = userId }, createdImages);
+            var createdImages = await _imageEndpoint.CreateImagesForUser(userId, images);
+            return Ok(createdImages);
         }
     }
 }

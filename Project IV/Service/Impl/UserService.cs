@@ -13,8 +13,8 @@ namespace Project_IV.Service.Impl
             _dbContext = dbContext;
         }
 
-        public async Task<User> GetUserByIdAsync(int id) =>
-            await _dbContext.Users.Include(u => u.Images).FirstOrDefaultAsync(u => u.UserId == id);
+        public async Task<User> GetUserByIdAsync(string id) =>
+            await _dbContext.Users.Include(u => u.Images).FirstOrDefaultAsync(u => u.Id == id);
 
         public async Task<IEnumerable<User>> GetAllUsersAsync() =>
             await _dbContext.Users.Include(u => u.Images).ToListAsync();
@@ -31,9 +31,8 @@ namespace Project_IV.Service.Impl
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteUserAsync(int id)
+        public async Task DeleteUserAsync(User user)
         {
-            var user = await GetUserByIdAsync(id);
             if (user != null)
             {
                 _dbContext.Users.Remove(user);

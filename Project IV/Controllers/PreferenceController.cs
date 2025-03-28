@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Project_IV.Dtos;
 using Project_IV.Endpoints;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Project_IV.Controllers
 {
-    [Route("api/preferences")]
+    [Route("api/[controller]")]
     [ApiController]
     public class PreferenceController : ControllerBase
     {
@@ -17,39 +18,53 @@ namespace Project_IV.Controllers
             _preferenceEndpoint = preferenceEndpoint;
         }
 
-        // Get a preference by ID
-        [HttpGet("{id}")]
-        public async Task<ActionResult<PreferenceDto>> GetPreference(int id)
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<PreferenceDto>>> GetAllPreferences()
         {
-            var preference = await _preferenceEndpoint.GetPreferenceById(id);
-            if (preference == null) return NotFound();
+            var preferences = await _preferenceEndpoint.GetAllPreferences();
+            return Ok(preferences);
+        }
+
+        [HttpGet("user/{userId}")]
+        public async Task<ActionResult<PreferenceDto>> GetPreferenceByUserId(string userId)
+        {
+            var preference = await _preferenceEndpoint.GetPreferenceByUserId(userId);
+            if (preference == null)
+            {
+                return NotFound();
+            }
             return Ok(preference);
         }
 
         // Create a new preference
         [HttpPost]
-        public async Task<ActionResult<PreferenceDto>> PostPreference([FromBody] PreferenceDto preferenceDto)
+        public async Task<ActionResult<PreferenceDto>> CreatePreference(PreferenceDto preferenceDto)
         {
             var createdPreference = await _preferenceEndpoint.CreatePreference(preferenceDto);
-            return CreatedAtAction(nameof(GetPreference), new { id = createdPreference.PreferenceId }, createdPreference);
+            return CreatedAtAction(nameof(GetPreferenceByUserId), new { userId = createdPreference.UserId }, createdPreference);
         }
 
         // Update a preference
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutPreference(int id, [FromBody] PreferenceDto preferenceDto)
+        [HttpPut("user/{userId}")]
+        public async Task<IActionResult> UpdatePreference(string userId, PreferenceDto preferenceDto)
         {
-            if (id != preferenceDto.PreferenceId) return BadRequest();
-            var updatedPreference = await _preferenceEndpoint.UpdatePreference(id, preferenceDto);
-            if (updatedPreference == null) return NotFound();
+            var updatedPreference = await _preferenceEndpoint.UpdatePreference(userId, preferenceDto);
+            if (updatedPreference == null)
+            {
+                return NotFound();
+            }
             return Ok(updatedPreference);
         }
 
         // Delete a preference
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePreference(int id)
+        [HttpDelete("user/{userId}")]
+        public async Task<IActionResult> DeletePreference(string userId)
         {
-            var success = await _preferenceEndpoint.DeletePreference(id);
-            if (!success) return NotFound();
+            var result = await _preferenceEndpoint.DeletePreference(userId);
+            if (!result)
+            {
+                return NotFound();
+            }
             return NoContent();
         }
     }

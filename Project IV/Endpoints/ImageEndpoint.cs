@@ -63,15 +63,14 @@ namespace Project_IV.Endpoints
         }
 
         // Get all images for a specific user
-        public async Task<IEnumerable<ImageDto>> GetImagesByUserId(int userId)
+        public async Task<IEnumerable<ImageDto>> GetImagesByUserId(string userId)
         {
-            var images = await _imageService.GetAllImagesAsync();
-            var userImages = images.Where(i => i.UserId == userId); // Filter by UserId
-            return userImages.Select(i => i.ToDto());
+            var images = await _imageService.GetImagesByUserIdAsync(userId);
+            return images.Select(i => i.ToDto());
         }
 
         // Create multiple images for a specific user
-        public async Task<IEnumerable<ImageDto>> CreateImagesByUserId(int userId, IEnumerable<ImageDto> imageDtos)
+        public async Task<IEnumerable<ImageDto>> CreateImagesForUser(string userId, IEnumerable<ImageDto> imageDtos)
         {
             var images = imageDtos.Select(dto => dto.ToEntity()).ToList(); // Map DTOs to entities
             foreach (var image in images)
@@ -79,8 +78,7 @@ namespace Project_IV.Endpoints
                 image.UserId = userId; // Set the user ID for each image
                 await _imageService.AddImageAsync(image);
             }
-
-            return images.Select(i => i.ToDto()); // Return the created images as DTOs
+            return images.Select(i => i.ToDto());
         }
     }
 }
