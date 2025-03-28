@@ -19,7 +19,6 @@ namespace Project_IV.Mappers
         {
             return new Match
             {
-                MatchId = matchDto.MatchId,
                 User1Id = matchDto.User1Id,
                 User2Id = matchDto.User2Id,
                 MatchedAt = matchDto.MatchedAt

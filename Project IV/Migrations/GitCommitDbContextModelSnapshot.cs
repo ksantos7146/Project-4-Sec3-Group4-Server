@@ -203,6 +203,12 @@ namespace Project_IV.Migrations
                         .HasColumnType("varchar(100)")
                         .HasColumnName("username");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("username");
+
                     b.HasKey("UserId");
 
                     b.HasIndex("GenderId");

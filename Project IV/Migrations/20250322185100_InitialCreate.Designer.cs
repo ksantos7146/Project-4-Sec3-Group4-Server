@@ -188,6 +188,12 @@ namespace Project_IV.Migrations
                         .HasColumnType("int")
                         .HasColumnName("age");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("password");
+
                     b.Property<string>("Bio")
                         .HasColumnType("text")
                         .HasColumnName("bio");

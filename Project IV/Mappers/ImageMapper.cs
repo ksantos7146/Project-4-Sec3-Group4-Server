@@ -19,7 +19,6 @@ namespace Project_IV.Mappers
         {
             return new Image
             {
-                ImageId = imageDto.ImageId,
                 ImageData = imageDto.ImageData,
                 UploadedAt = imageDto.UploadedAt,
                 UserId = imageDto.UserId

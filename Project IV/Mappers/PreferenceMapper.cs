@@ -21,7 +21,6 @@ namespace Project_IV.Mappers
         {
             return new Preference
             {
-                PreferenceId = preferenceDto.PreferenceId,
                 UserId = preferenceDto.UserId,
                 MinAge = preferenceDto.MinAge,
                 MaxAge = preferenceDto.MaxAge,

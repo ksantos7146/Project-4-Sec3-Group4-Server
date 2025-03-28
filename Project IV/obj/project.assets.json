@@ -2694,11 +2694,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\Project IV.csproj",
+      "projectUniqueName": "C:\\Users\\user\\Desktop\\Project IV\\Project IV\\Project IV.csproj",
       "projectName": "Project IV",
-      "projectPath": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\Project IV.csproj",
+      "projectPath": "C:\\Users\\user\\Desktop\\Project IV\\Project IV\\Project IV.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\Desktop\\Project-IV-Sec3-Group4\\Project IV\\obj\\",
+      "outputPath": "C:\\Users\\user\\Desktop\\Project IV\\Project IV\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

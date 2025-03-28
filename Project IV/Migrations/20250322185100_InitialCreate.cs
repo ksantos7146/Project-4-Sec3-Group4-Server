@@ -53,6 +53,8 @@ namespace Project_IV.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     username = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    password = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     bio = table.Column<string>(type: "text", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     gender_id = table.Column<int>(type: "int", nullable: true),
@@ -254,14 +256,14 @@ namespace Project_IV.Migrations
             // Add test users
             migrationBuilder.InsertData(
                 table: "users",
-                columns: new[] { "user_id", "username", "bio", "gender_id", "state_id", "age" },
+                columns: new[] { "user_id", "username", "password", "bio", "gender_id", "state_id", "age" },
                 values: new object[,]
                 {
-                    { 1, "john_doe", "Software developer who loves coding and coffee", 1, 1, 28 },
-                    { 2, "jane_smith", "Adventure seeker and travel enthusiast", 2, 1, 25 },
-                    { 3, "alex_wilson", "Photographer and nature lover", 1, 2, 32 },
-                    { 4, "emily_brown", "Bookworm and tea addict", 2, 1, 27 },
-                    { 5, "sam_taylor", "Music producer and guitarist", 3, 3, 30 }
+                    { 1, "john_doe", "john_doe", "Software developer who loves coding and coffee", 1, 1, 28 },
+                    { 2, "jane_smith", "jane_smith", "Adventure seeker and travel enthusiast", 2, 1, 25 },
+                    { 3, "alex_wilson", "alex_wilson", "Photographer and nature lover", 1, 2, 32 },
+                    { 4, "emily_brown", "emily_brown", "Bookworm and tea addict", 2, 1, 27 },
+                    { 5, "sam_taylor", "sam_taylor", "Music producer and guitarist", 3, 3, 30 }
                 });
 
             // Add preferences

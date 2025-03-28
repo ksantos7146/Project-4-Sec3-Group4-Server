@@ -24,6 +24,7 @@ namespace Project_IV.Data
                 entity.ToTable("users");
                 entity.Property(e => e.UserId).HasColumnName("user_id");
                 entity.Property(e => e.Username).HasColumnName("username").HasMaxLength(100).IsRequired();
+                entity.Property(e => e.Password).HasColumnName("password").HasMaxLength(100).IsRequired();
                 entity.Property(e => e.Bio).HasColumnName("bio").HasColumnType("text");
                 entity.Property(e => e.GenderId).HasColumnName("gender_id");
                 entity.Property(e => e.StateId).HasColumnName("state_id");

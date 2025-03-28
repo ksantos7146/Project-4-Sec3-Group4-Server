@@ -23,7 +23,6 @@ namespace Project_IV.Mappers
         {
             return new User
             {
-                UserId = userDto.UserId,
                 Username = userDto.Username,
                 Bio = userDto.Bio,
                 GenderId = userDto.GenderId,

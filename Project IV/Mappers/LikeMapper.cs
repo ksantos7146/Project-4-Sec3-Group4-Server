@@ -19,7 +19,6 @@ namespace Project_IV.Mappers
         {
             return new Like
             {
-                LikeId = likeDto.LikeId,
                 LikerId = likeDto.LikerId,
                 LikedId = likeDto.LikedId,
                 LikedAt = likeDto.LikedAt
