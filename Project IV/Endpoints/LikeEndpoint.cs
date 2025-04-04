@@ -11,12 +11,14 @@ namespace Project_IV.Endpoints
         private readonly ILikeService _likeService;
         private readonly IAuthService _authService;
         private readonly IMatchService _matchService;
+        private readonly IUserService _userService;
 
-        public LikeEndpoint(ILikeService likeService, IAuthService authService, IMatchService matchService)
+        public LikeEndpoint(ILikeService likeService, IAuthService authService, IMatchService matchService, IUserService userService)
         {
             _likeService = likeService;
             _authService = authService;
             _matchService = matchService;
+            _userService = userService;
         }
 
         // Get a single like by ID
@@ -34,7 +36,7 @@ namespace Project_IV.Endpoints
         }
 
         // Create a new like
-        public async Task<LikeDto> CreateLike(LikeDto likeDto)
+        public async Task<LikeResponseDto> CreateLike(LikeDto likeDto)
         {
             var likerId = await _authService.GetCurrentUserIdAsync();
             var existingLike = (await _likeService.GetLikesByLikedIdAsync(likeDto.LikedId))
@@ -44,6 +46,16 @@ namespace Project_IV.Endpoints
             like.LikedAt = DateTime.UtcNow;
             like.LikerId = likerId;
             await _likeService.AddLikeAsync(like);
+
+            // Get a new user to show next
+            var nextUser = await GetNextUserToShow(likerId);
+            
+            var response = new LikeResponseDto
+            {
+                Like = like.ToDto(),
+                NextUser = nextUser?.ToDto()
+            };
+
             if (existingLike != null)
             {
                 var match = new Match
@@ -53,17 +65,31 @@ namespace Project_IV.Endpoints
                     User2Id = like.LikedId
                 };
                 await _matchService.AddMatchAsync(match);
-                return new LikeDto
-                {
-                    LikedAt = like.LikedAt,
-                    LikerId = like.LikerId,
-                    LikedId = existingLike.LikerId,
-                    likedBack = true
-                };
+                response.Like.likedBack = true;
             }
-            return like.ToDto(); // Return the like as a DTO
+
+            return response;
         }
 
+        private async Task<User?> GetNextUserToShow(string currentUserId)
+        {
+            // Get all users except the current user and those already liked
+            var allUsers = await _userService.GetAllUsersAsync();
+            var likedUsers = (await _likeService.GetLikesByLikerIdAsync(currentUserId))
+                .Select(l => l.LikedId)
+                .ToList();
+
+            var availableUsers = allUsers
+                .Where(u => u.Id != currentUserId && !likedUsers.Contains(u.Id))
+                .ToList();
+
+            if (!availableUsers.Any())
+                return null;
+
+            // Return a random user from the available ones
+            var random = new Random();
+            return availableUsers[random.Next(availableUsers.Count)];
+        }
 
         // Delete a like
         public async Task<bool> DeleteLike(int id)
