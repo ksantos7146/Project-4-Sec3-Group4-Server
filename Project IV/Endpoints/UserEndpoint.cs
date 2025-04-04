@@ -32,6 +32,11 @@ namespace Project_IV.Endpoints
         public async Task<UserDto> GetLoggedUser()
         {
             var userId = await _authService.GetCurrentUserIdAsync();
+            if (userId == null)
+            {
+                return null;
+            }
+
             var user = await _userService.GetUserByIdAsync(userId);
             return user?.ToDto();
         }

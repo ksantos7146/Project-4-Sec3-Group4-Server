@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Project_IV.Dtos;
 using Project_IV.Endpoints;
 
@@ -28,8 +29,8 @@ public class UserController : ControllerBase
         return Ok(user);
     }
 
-
-    [HttpGet("/logged")]
+    [HttpGet("logged")]
+    [Authorize]
     public async Task<ActionResult<UserDto>> GetLoggedUser()
     {
         var user = await _userEndpoint.GetLoggedUser();
