@@ -9,6 +9,7 @@ namespace Project_IV.Endpoints
     public class UserEndpoint
     {
         private readonly IUserService _userService;
+        private readonly IAuthService _authService;
 
         public UserEndpoint(IUserService userService)
         {
@@ -34,9 +35,10 @@ namespace Project_IV.Endpoints
             return user.ToDto();
         }
 
-        public async Task<UserDto> UpdateUser(string id, UserDto userDto)
+        public async Task<UserDto> UpdateUser(UserDto userDto)
         {
-            var user = await _userService.GetUserByIdAsync(id);
+            var userId = await _authService.GetCurrentUserIdAsync();
+            var user = await _userService.GetUserByIdAsync(userId); 
             if (user == null)
             {
                 return null;

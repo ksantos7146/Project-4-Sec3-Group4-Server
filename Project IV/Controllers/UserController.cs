@@ -40,14 +40,13 @@ public class UserController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutUser(string id, UserDto userDto)
+    public async Task<IActionResult> PutUser(UserDto userDto)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
-        if (id != userDto.UserId) return BadRequest();
-        var updatedUser = await _userEndpoint.UpdateUser(id, userDto);
+        var updatedUser = await _userEndpoint.UpdateUser(userDto);
         if (updatedUser == null) return NotFound();
         return Ok(updatedUser);
     }
