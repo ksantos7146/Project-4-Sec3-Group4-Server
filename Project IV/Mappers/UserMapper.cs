@@ -24,6 +24,7 @@ namespace Project_IV.Mappers
         {
             return new User
             {
+                Id = userDto.UserId,
                 UserName = userDto.Username,
                 Email = userDto.Email,
                 Bio = userDto.Bio,
