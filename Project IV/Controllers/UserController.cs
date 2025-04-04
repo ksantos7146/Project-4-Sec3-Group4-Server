@@ -8,10 +8,12 @@ using Project_IV.Endpoints;
 public class UserController : ControllerBase
 {
     private readonly UserEndpoint _userEndpoint;
+    private readonly IAuthService _authService;
 
-    public UserController(UserEndpoint userEndpoint)
+    public UserController(UserEndpoint userEndpoint, IAuthService authService)
     {
         _userEndpoint = userEndpoint;
+        _authService = authService;
     }
 
     [HttpGet]
@@ -50,12 +52,21 @@ public class UserController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutUser(UserDto userDto)
+    [Authorize]
+    public async Task<IActionResult> PutUser(string id, UserDto userDto)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
+
+        // Verify that the user is updating their own profile
+        var currentUserId = await _authService.GetCurrentUserIdAsync();
+        if (currentUserId != id)
+        {
+            return Forbid();
+        }
+
         var updatedUser = await _userEndpoint.UpdateUser(userDto);
         if (updatedUser == null) return NotFound();
         return Ok(updatedUser);

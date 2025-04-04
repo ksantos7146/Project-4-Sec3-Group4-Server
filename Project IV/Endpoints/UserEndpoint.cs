@@ -2,6 +2,7 @@
 using Project_IV.Entities;
 using Project_IV.Mappers;
 using Project_IV.Service;
+using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 
 namespace Project_IV.Endpoints
@@ -10,11 +11,13 @@ namespace Project_IV.Endpoints
     {
         private readonly IUserService _userService;
         private readonly IAuthService _authService;
+        private readonly UserManager<User> _userManager;
 
-        public UserEndpoint(IUserService userService, IAuthService authService)
+        public UserEndpoint(IUserService userService, IAuthService authService, UserManager<User> userManager)
         {
             _userService = userService;
             _authService = authService;
+            _userManager = userManager;
         }
 
         public async Task<IEnumerable<UserDto>> GetAllUsers()
@@ -57,11 +60,24 @@ namespace Project_IV.Endpoints
                 return null;
             }
 
+            // Update basic info
             user.UserName = userDto.Username;
+            user.Email = userDto.Email;
             user.Bio = userDto.Bio;
             user.GenderId = userDto.GenderId;
             user.StateId = userDto.StateId;
             user.Age = userDto.Age;
+
+            // Update password if provided
+            if (!string.IsNullOrEmpty(userDto.Password))
+            {
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var result = await _userManager.ResetPasswordAsync(user, token, userDto.Password);
+                if (!result.Succeeded)
+                {
+                    return null;
+                }
+            }
 
             await _userService.UpdateUserAsync(user);
             return user.ToDto();

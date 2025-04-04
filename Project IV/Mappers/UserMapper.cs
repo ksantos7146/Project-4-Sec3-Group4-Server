@@ -11,9 +11,9 @@ namespace Project_IV.Mappers
             {
                 UserId = user.Id,
                 Username = user.UserName,
+                Email = user.Email,
                 Bio = user.Bio,
                 GenderId = user.GenderId,
-                Email = user.Email,
                 StateId = user.StateId,
                 Age = user.Age,
                 Images = user.Images.Select(i => i.ToDto()).ToList()
@@ -25,10 +25,10 @@ namespace Project_IV.Mappers
             return new User
             {
                 UserName = userDto.Username,
+                Email = userDto.Email,
                 Bio = userDto.Bio,
                 GenderId = userDto.GenderId,
                 StateId = userDto.StateId,
-                Email= userDto.Email,
                 Age = userDto.Age,
                 Images = userDto.Images.Select(i => i.ToEntity()).ToList()
             };
