@@ -11,9 +11,10 @@ namespace Project_IV.Endpoints
         private readonly IUserService _userService;
         private readonly IAuthService _authService;
 
-        public UserEndpoint(IUserService userService)
+        public UserEndpoint(IUserService userService, IAuthService authService)
         {
             _userService = userService;
+            _authService = authService;
         }
 
         public async Task<IEnumerable<UserDto>> GetAllUsers()
