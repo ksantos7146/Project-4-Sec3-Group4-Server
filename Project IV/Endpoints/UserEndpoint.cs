@@ -54,7 +54,12 @@ namespace Project_IV.Endpoints
         public async Task<UserDto> UpdateUser(UserDto userDto)
         {
             var userId = await _authService.GetCurrentUserIdAsync();
-            var user = await _userService.GetUserByIdAsync(userId); 
+            if (userId == null)
+            {
+                return null;
+            }
+
+            var user = await _userService.GetUserByIdAsync(userId);
             if (user == null)
             {
                 return null;
@@ -79,7 +84,10 @@ namespace Project_IV.Endpoints
                 }
             }
 
+            // Save changes
             await _userService.UpdateUserAsync(user);
+
+            // Return updated user
             return user.ToDto();
         }
 
