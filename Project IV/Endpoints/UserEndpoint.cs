@@ -28,7 +28,7 @@ namespace Project_IV.Endpoints
             return user?.ToDto();
         }
 
-        public async Task<UserDto> GetLogedUser()
+        public async Task<UserDto> GetLoggedUser()
         {
             var userId = await _authService.GetCurrentUserIdAsync();
             var user = await _userService.GetUserByIdAsync(userId);

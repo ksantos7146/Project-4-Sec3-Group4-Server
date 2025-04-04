@@ -29,10 +29,10 @@ public class UserController : ControllerBase
     }
 
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<UserDto>> GetLogedUser()
+    [HttpGet("/logged")]
+    public async Task<ActionResult<UserDto>> GetLoggedUser()
     {
-        var user = await _userEndpoint.GetLogedUser();
+        var user = await _userEndpoint.GetLoggedUser();
         if (user == null) return NotFound();
         return Ok(user);
     }
