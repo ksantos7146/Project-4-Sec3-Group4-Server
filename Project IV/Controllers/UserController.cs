@@ -28,6 +28,15 @@ public class UserController : ControllerBase
         return Ok(user);
     }
 
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<UserDto>> GetLogedUser()
+    {
+        var user = await _userEndpoint.GetLogedUser();
+        if (user == null) return NotFound();
+        return Ok(user);
+    }
+
     [HttpPost]
     public async Task<ActionResult<UserDto>> PostUser(UserDto userDto)
     {

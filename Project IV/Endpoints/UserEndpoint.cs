@@ -28,6 +28,13 @@ namespace Project_IV.Endpoints
             return user?.ToDto();
         }
 
+        public async Task<UserDto> GetLogedUser()
+        {
+            var userId = await _authService.GetCurrentUserIdAsync();
+            var user = await _userService.GetUserByIdAsync(userId);
+            return user?.ToDto();
+        }
+
         public async Task<UserDto> CreateUser(UserDto userDto)
         {
             var user = userDto.ToEntity();
