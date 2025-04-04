@@ -65,8 +65,7 @@ namespace Project_IV.Endpoints
                 return null;
             }
 
-            // Update basic info
-            user.UserName = userDto.Username;
+            // Update basic info (excluding username)
             user.Email = userDto.Email;
             user.Bio = userDto.Bio;
             user.GenderId = userDto.GenderId;
