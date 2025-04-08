@@ -39,5 +39,15 @@ namespace Project_IV.Service.Impl
                 await _dbContext.SaveChangesAsync();
             }
         }
+
+        public async Task UpdateUserStateAsync(string userId, int stateId)
+        {
+            var user = await _dbContext.Users.FindAsync(userId);
+            if (user != null)
+            {
+                user.StateId = stateId;
+                await _dbContext.SaveChangesAsync();
+            }
+        }
     }
 }

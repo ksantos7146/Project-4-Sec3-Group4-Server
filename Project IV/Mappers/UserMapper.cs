@@ -29,7 +29,6 @@ namespace Project_IV.Mappers
                 Email = userDto.Email,
                 Bio = userDto.Bio,
                 GenderId = userDto.GenderId,
-                StateId = userDto.StateId,
                 Age = userDto.Age,
                 Images = userDto.Images.Select(i => i.ToEntity()).ToList()
             };

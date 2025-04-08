@@ -33,7 +33,7 @@ namespace Project_IV.Service.Impl
                 Email = request.Email,
                 Bio = request.Bio,
                 GenderId = request.GenderId,
-                StateId = request.StateId,
+                StateId = 1,
                 Age = request.Age
             };
 

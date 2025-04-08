@@ -65,29 +65,19 @@ namespace Project_IV.Endpoints
                 return null;
             }
 
-            // Update basic info (excluding username)
+            user.UserName = userDto.Username;
             user.Email = userDto.Email;
             user.Bio = userDto.Bio;
             user.GenderId = userDto.GenderId;
-            user.StateId = userDto.StateId;
             user.Age = userDto.Age;
 
-            // Update password if provided
-            if (!string.IsNullOrEmpty(userDto.Password))
-            {
-                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var result = await _userManager.ResetPasswordAsync(user, token, userDto.Password);
-                if (!result.Succeeded)
-                {
-                    return null;
-                }
-            }
-
-            // Save changes
             await _userService.UpdateUserAsync(user);
-
-            // Return updated user
             return user.ToDto();
+        }
+
+        public async Task UpdateUserState(string userId, int stateId)
+        {
+            await _userService.UpdateUserStateAsync(userId, stateId);
         }
 
         public async Task<bool> DeleteUser(string id)

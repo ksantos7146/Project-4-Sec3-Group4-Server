@@ -9,5 +9,6 @@ namespace Project_IV.Service
         Task AddUserAsync(User user);
         Task UpdateUserAsync(User user);
         Task DeleteUserAsync(User user);
+        Task UpdateUserStateAsync(string userId, int stateId);
     }
 }

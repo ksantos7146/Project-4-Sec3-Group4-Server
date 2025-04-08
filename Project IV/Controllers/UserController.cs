@@ -8,12 +8,10 @@ using Project_IV.Endpoints;
 public class UserController : ControllerBase
 {
     private readonly UserEndpoint _userEndpoint;
-    private readonly IAuthService _authService;
 
-    public UserController(UserEndpoint userEndpoint, IAuthService authService)
+    public UserController(UserEndpoint userEndpoint)
     {
         _userEndpoint = userEndpoint;
-        _authService = authService;
     }
 
     [HttpGet]
@@ -59,17 +57,22 @@ public class UserController : ControllerBase
         {
             return BadRequest(ModelState);
         }
-
-        // Verify that the user is updating their own profile
-        var currentUserId = await _authService.GetCurrentUserIdAsync();
-        if (currentUserId != id)
-        {
-            return Forbid();
-        }
-
         var updatedUser = await _userEndpoint.UpdateUser(userDto);
         if (updatedUser == null) return NotFound();
         return Ok(updatedUser);
+    }
+
+    [HttpPut("{id}/state")]
+    [Authorize]
+    public async Task<IActionResult> UpdateUserState(string id, [FromBody] int stateId)
+    {
+        if (stateId < 1 || stateId > 3) // 1: Online, 2: Offline, 3: Paused
+        {
+            return BadRequest("Invalid state ID. Must be between 1 and 3.");
+        }
+        
+        await _userEndpoint.UpdateUserState(id, stateId);
+        return Ok();
     }
 
     [HttpDelete("{id}")]
