@@ -38,8 +38,36 @@ namespace Project_IV.Controllers
         [HttpPost]
         public async Task<ActionResult<LikeResponseDto>> PostLike(LikeDto likeDto)
         {
-            var response = await _likeEndpoint.CreateLike(likeDto);
-            return Ok(response);
+            try
+            {
+                if (likeDto == null)
+                {
+                    return BadRequest("Like data is required");
+                }
+
+                if (string.IsNullOrEmpty(likeDto.LikedId))
+                {
+                    return BadRequest("Liked user ID is required");
+                }
+
+                var response = await _likeEndpoint.CreateLike(likeDto);
+                return Ok(response);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                return Unauthorized(new { message = ex.Message });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                // Log the error
+                Console.WriteLine($"Error in PostLike: {ex.Message}");
+                Console.WriteLine($"Stack trace: {ex.StackTrace}");
+                return StatusCode(500, new { message = "An error occurred while processing your like request. Please try again later." });
+            }
         }
 
         // Delete a like

@@ -20,6 +20,7 @@ namespace Project_IV.Mappers
             return new Like
             {
                 LikedId = likeDto.LikedId,
+                LikerId = likeDto.LikerId
             };
         }
 

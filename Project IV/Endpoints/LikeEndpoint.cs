@@ -38,37 +38,80 @@ namespace Project_IV.Endpoints
         // Create a new like
         public async Task<LikeResponseDto> CreateLike(LikeDto likeDto)
         {
-            var likerId = await _authService.GetCurrentUserIdAsync();
-            var existingLike = (await _likeService.GetLikesByLikedIdAsync(likeDto.LikedId))
-                               .FirstOrDefault(l => l.LikerId == likeDto.LikedId);
-
-            var like = likeDto.ToEntity();
-            like.LikedAt = DateTime.UtcNow;
-            like.LikerId = likerId;
-            await _likeService.AddLikeAsync(like);
-
-            // Get a new user to show next
-            var nextUser = await GetNextUserToShow(likerId);
-            
-            var response = new LikeResponseDto
+            try
             {
-                Like = like.ToDto(),
-                NextUser = nextUser?.ToDto()
-            };
-
-            if (existingLike != null)
-            {
-                var match = new Match
+                var likerId = await _authService.GetCurrentUserIdAsync();
+                if (string.IsNullOrEmpty(likerId))
                 {
-                    MatchedAt = DateTime.UtcNow,
-                    User1Id = existingLike.LikerId,
-                    User2Id = like.LikedId
-                };
-                await _matchService.AddMatchAsync(match);
-                response.Like.likedBack = true;
-            }
+                    throw new UnauthorizedAccessException("User is not authenticated");
+                }
 
-            return response;
+                // Validate that both users exist
+                var liker = await _userService.GetUserByIdAsync(likerId);
+                var likedUser = await _userService.GetUserByIdAsync(likeDto.LikedId);
+                
+                if (liker == null)
+                {
+                    throw new InvalidOperationException($"Liker user with ID {likerId} not found");
+                }
+                if (likedUser == null)
+                {
+                    throw new InvalidOperationException($"Liked user with ID {likeDto.LikedId} not found");
+                }
+                
+                // Check if the like already exists
+                var existingLike = (await _likeService.GetLikesByLikerIdAsync(likerId))
+                                   .FirstOrDefault(l => l.LikedId == likeDto.LikedId);
+                
+                if (existingLike != null)
+                {
+                    // Like already exists, return it
+                    return new LikeResponseDto
+                    {
+                        Like = existingLike.ToDto(),
+                        NextUser = null
+                    };
+                }
+
+                // Check if the other user has already liked the current user
+                var likedBack = (await _likeService.GetLikesByLikedIdAsync(likerId))
+                                .Any(l => l.LikerId == likeDto.LikedId);
+
+                var like = likeDto.ToEntity();
+                like.LikedAt = DateTime.UtcNow;
+                like.LikerId = likerId;
+                await _likeService.AddLikeAsync(like);
+
+                // Get a new user to show next
+                var nextUser = await GetNextUserToShow(likerId);
+                
+                var response = new LikeResponseDto
+                {
+                    Like = like.ToDto(),
+                    NextUser = nextUser?.ToDto()
+                };
+
+                if (likedBack)
+                {
+                    var match = new Match
+                    {
+                        MatchedAt = DateTime.UtcNow,
+                        User1Id = likerId,
+                        User2Id = likeDto.LikedId
+                    };
+                    await _matchService.AddMatchAsync(match);
+                    response.Like.likedBack = true;
+                }
+
+                return response;
+            }
+            catch (Exception ex)
+            {
+                // Log the error details
+                Console.WriteLine($"Error in CreateLike: {ex.Message}");
+                Console.WriteLine($"Stack trace: {ex.StackTrace}");
+                throw; // Re-throw to be handled by the controller
+            }
         }
 
         private async Task<User?> GetNextUserToShow(string currentUserId)
