@@ -67,7 +67,11 @@ builder.Services.AddAuthentication(options =>
 // Register services
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ILikeService, LikeService>();
+builder.Services.AddScoped<IMatchService, MatchService>();
 builder.Services.AddScoped<UserEndpoint>();
+builder.Services.AddScoped<LikeEndpoint>();
+builder.Services.AddScoped<MatchEndpoint>();
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddControllers()

@@ -39,5 +39,12 @@ namespace Project_IV.Endpoints
             await _matchService.RemoveMatchAsync(id);
             return true;
         }
+
+        public async Task<IEnumerable<MatchDto>> GetMatchesForUser(string userId)
+        {
+            var allMatches = await _matchService.GetAllMatchesAsync();
+            var userMatches = allMatches.Where(m => m.User1Id == userId || m.User2Id == userId);
+            return userMatches.Select(m => m.ToDto());
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace Project_IV.Mappers
             return new UserDto
             {
                 UserId = user.Id,
-                Username = user.UserName,
+                Username = user.NormalizedUserName ?? string.Empty,
                 Email = user.Email,
                 Bio = user.Bio,
                 GenderId = user.GenderId,

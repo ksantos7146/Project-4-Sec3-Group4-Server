@@ -14,10 +14,18 @@ namespace Project_IV.Service.Impl
         }
 
         public async Task<Match> GetMatchByIdAsync(int id) =>
-            await _dbContext.Matches.FindAsync(id);
+            await _dbContext.Matches
+                .Include(m => m.User1)
+                .Include(m => m.User2)
+                .FirstOrDefaultAsync(m => m.MatchId == id);
 
         public async Task<IEnumerable<Match>> GetAllMatchesAsync() =>
-            await _dbContext.Matches.ToListAsync();
+            await _dbContext.Matches
+                .Include(m => m.User1)
+                    .ThenInclude(u => u.Images)
+                .Include(m => m.User2)
+                    .ThenInclude(u => u.Images)
+                .ToListAsync();
 
         public async Task AddMatchAsync(Match match)
         {

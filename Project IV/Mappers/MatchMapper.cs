@@ -12,7 +12,9 @@ namespace Project_IV.Mappers
                 MatchId = match.MatchId,
                 User1Id = match.User1Id,
                 User2Id = match.User2Id,
-                MatchedAt = match.MatchedAt
+                MatchedAt = match.MatchedAt,
+                User1 = match.User1?.ToDto(),
+                User2 = match.User2?.ToDto()
             };
         }
         public static Match ToEntity(this MatchDto matchDto)

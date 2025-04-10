@@ -43,7 +43,7 @@ namespace Project_IV.Endpoints
                 var likerId = await _authService.GetCurrentUserIdAsync();
                 if (string.IsNullOrEmpty(likerId))
                 {
-                    throw new UnauthorizedAccessException("User is not authenticated");
+                    throw new UnauthorizedAccessException("User is not authenticated. Please log in again.");
                 }
 
                 // Validate that both users exist
@@ -52,11 +52,17 @@ namespace Project_IV.Endpoints
                 
                 if (liker == null)
                 {
-                    throw new InvalidOperationException($"Liker user with ID {likerId} not found");
+                    throw new InvalidOperationException($"Your account (ID: {likerId}) was not found. Please contact support.");
                 }
                 if (likedUser == null)
                 {
-                    throw new InvalidOperationException($"Liked user with ID {likeDto.LikedId} not found");
+                    throw new InvalidOperationException($"The user you tried to like (ID: {likeDto.LikedId}) no longer exists.");
+                }
+
+                // Prevent self-liking
+                if (likerId == likeDto.LikedId)
+                {
+                    throw new InvalidOperationException("You cannot like yourself.");
                 }
                 
                 // Check if the like already exists

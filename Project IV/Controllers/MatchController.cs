@@ -2,6 +2,7 @@
 using Project_IV.Dtos;
 using Project_IV.Endpoints;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Project_IV.Controllers
 {
@@ -41,6 +42,13 @@ namespace Project_IV.Controllers
             var success = await _matchEndpoint.DeleteMatch(id);
             if (!success) return NotFound();
             return NoContent();
+        }
+
+        [HttpGet("user/{userId}")]
+        public async Task<ActionResult<IEnumerable<MatchDto>>> GetMatchesForUser(string userId)
+        {
+            var matches = await _matchEndpoint.GetMatchesForUser(userId);
+            return Ok(matches);
         }
     }
 }
