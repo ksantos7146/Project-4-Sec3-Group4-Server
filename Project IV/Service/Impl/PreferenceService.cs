@@ -27,7 +27,24 @@ namespace Project_IV.Service.Impl
 
         public async Task UpdatePreferenceAsync(Preference preference)
         {
-            _dbContext.Preferences.Update(preference);
+            var existingPreference = await _dbContext.Preferences
+                .FirstOrDefaultAsync(p => p.UserId == preference.UserId);
+
+            if (existingPreference == null)
+            {
+                // If no preference exists, create a new one
+                await _dbContext.Preferences.AddAsync(preference);
+            }
+            else
+            {
+                // Update existing preference
+                existingPreference.MinAge = preference.MinAge;
+                existingPreference.MaxAge = preference.MaxAge;
+                existingPreference.GenderId = preference.GenderId;
+                existingPreference.StateId = preference.StateId;
+                _dbContext.Preferences.Update(existingPreference);
+            }
+
             await _dbContext.SaveChangesAsync();
         }
 

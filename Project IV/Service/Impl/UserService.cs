@@ -13,11 +13,17 @@ namespace Project_IV.Service.Impl
             _dbContext = dbContext;
         }
 
-        public async Task<User> GetUserByIdAsync(string id) =>
-            await _dbContext.Users.Include(u => u.Images).FirstOrDefaultAsync(u => u.Id == id);
+        public async Task<User?> GetUserByIdAsync(string id) =>
+            await _dbContext.Users
+                .Include(u => u.Images)
+                .Include(u => u.Gender)
+                .FirstOrDefaultAsync(u => u.Id == id);
 
         public async Task<IEnumerable<User>> GetAllUsersAsync() =>
-            await _dbContext.Users.Include(u => u.Images).ToListAsync();
+            await _dbContext.Users
+                .Include(u => u.Images)
+                .Include(u => u.Gender)
+                .ToListAsync();
 
         public async Task AddUserAsync(User user)
         {
@@ -33,11 +39,8 @@ namespace Project_IV.Service.Impl
 
         public async Task DeleteUserAsync(User user)
         {
-            if (user != null)
-            {
-                _dbContext.Users.Remove(user);
-                await _dbContext.SaveChangesAsync();
-            }
+            _dbContext.Users.Remove(user);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task UpdateUserStateAsync(string userId, int stateId)
@@ -48,6 +51,14 @@ namespace Project_IV.Service.Impl
                 user.StateId = stateId;
                 await _dbContext.SaveChangesAsync();
             }
+        }
+
+        public async Task<IEnumerable<string>> GetLikedUserIdsAsync(string userId)
+        {
+            return await _dbContext.Likes
+                .Where(l => l.LikerId == userId)
+                .Select(l => l.LikedId)
+                .ToListAsync();
         }
     }
 }

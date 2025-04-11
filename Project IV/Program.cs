@@ -69,9 +69,11 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<ILikeService, LikeService>();
 builder.Services.AddScoped<IMatchService, MatchService>();
+builder.Services.AddScoped<IPreferenceService, PreferenceService>();
 builder.Services.AddScoped<UserEndpoint>();
 builder.Services.AddScoped<LikeEndpoint>();
 builder.Services.AddScoped<MatchEndpoint>();
+builder.Services.AddScoped<PreferenceEndpoint>();
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddControllers()

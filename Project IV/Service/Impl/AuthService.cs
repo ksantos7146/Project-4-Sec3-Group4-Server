@@ -14,15 +14,18 @@ namespace Project_IV.Service.Impl
         private readonly UserManager<User> _userManager;
         private readonly IConfiguration _configuration;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IPreferenceService _preferenceService;
 
         public AuthService(
             UserManager<User> userManager,
             IConfiguration configuration,
-            IHttpContextAccessor httpContextAccessor)
+            IHttpContextAccessor httpContextAccessor,
+            IPreferenceService preferenceService)
         {
             _userManager = userManager;
             _configuration = configuration;
             _httpContextAccessor = httpContextAccessor;
+            _preferenceService = preferenceService;
         }
 
         public async Task<AuthResponse> RegisterAsync(RegisterRequest request)
@@ -47,6 +50,17 @@ namespace Project_IV.Service.Impl
                     Message = string.Join(", ", result.Errors.Select(e => e.Description))
                 };
             }
+
+            // Create default preferences for the new user
+            var defaultPreference = new Preference
+            {
+                UserId = user.Id,
+                MinAge = 18,
+                MaxAge = 100,
+                GenderId = null // No gender preference by default
+            };
+
+            await _preferenceService.AddPreferenceAsync(defaultPreference);
 
             var token = await GenerateJwtTokenAsync(user);
 
